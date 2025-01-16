@@ -1,0 +1,37 @@
+# Ignore node_modules directories
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Dependency directories for both frontend and backend
+frontend/node_modules/
+backend/node_modules/
+
+# Build or production outputs
+frontend/build/
+frontend/dist/
+backend/build/
+backend/dist/
+
+# Environment files
+.env
+frontend/.env
+backend/.env
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Coverage files from tests
+coverage/
