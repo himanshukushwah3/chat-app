@@ -38,7 +38,6 @@ io.on("connection", (socket) => {
       const user = await User.findById(senderId);
       if (receiver) {
         io.to(receiver.socketId)
-          .to(sender.socketId)
           .emit("getMessage", {
             senderId,
             receiverId,
@@ -46,15 +45,14 @@ io.on("connection", (socket) => {
             conversationId,
             user: { id: user._id, name: user.name, email: user.email },
           });
-      } else {
-        io.to(sender.socketId).emit("getMessage", {
-          senderId,
-          receiverId,
-          message,
-          conversationId,
-          user: { id: user._id, name: user.name, email: user.email },
-        });
       }
+      io.to(sender.socketId).emit("getMessage", {
+        senderId,
+        receiverId,
+        message,
+        conversationId,
+        user: { id: user._id, name: user.name, email: user.email },
+      });
     }
   );
 

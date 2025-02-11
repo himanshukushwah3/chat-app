@@ -38,7 +38,6 @@ const Dashboard = () => {
       console.log("Active Users: ", users);
     });
     socket?.on("getMessage", (data) => {
-      // console.log(data);
       setMessages((prev) => ({
         ...prev,
         messages: [
@@ -140,7 +139,18 @@ const Dashboard = () => {
           },
         }
       );
-      console.log(response);
+
+      // After storing message, emit to socket
+      socket.emit("sendMessage", {
+        senderId: user.id,
+        receiverId: messages?.receiver?.receiverId,
+        message,
+        conversationId: messages?.conversationId,
+      });
+
+      setMessage(""); // Clear the input after sending
+
+      
     } catch (error) {
       console.error(
         "An error occurred:",
